@@ -1,4 +1,4 @@
-name: vprofile actions
+name: vprofile-actions
 
 on: 
   workflow_dispatch:
@@ -12,7 +12,7 @@ env:
   EKS_CLUSTER: gitops-eks
 
 jobs:
-  Testing: 
+  testing: 
     runs-on: ubuntu-latest
 
     steps:
@@ -37,6 +37,7 @@ jobs:
       - name: Run SonarCloud scan
         run: |
           sonar-scanner \
+            -Dsonar.projectBaseDir=. \
             -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
