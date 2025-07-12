@@ -34,7 +34,9 @@ jobs:
       - name: Set up Sonar Scanner
         uses: warchant/setup-sonar-scanner@v7
 
-      - name: Run SonarCloud scan
+      - name: Run SonarCloud Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           sonar-scanner \
             -Dsonar.projectBaseDir=. \
